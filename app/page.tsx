@@ -12,7 +12,7 @@ export default function HomePage() {
 
       <SplitSection
         paperSlug="home-details"
-        image="/images/wedding-details-photo.png"
+        image="/images/tomboy.jpeg"
         imageAlt="Wedding celebration details"
         imageSide="right"
         theme="dark"

@@ -41,27 +41,30 @@ export const schedule: TimelineRow[] = [
 
 export const journey: TimelineRow[] = [
   {
-    time: "[Date]",
+    time: "August 2025",
     title: "First Meeting",
-    sub: ["[Describe your first encounter]"],
+    sub: [
+      "Team Radiant, Votage Singles Fellowship.",
+      "The team lead assigned Word of the Day, and the rest is history. 😂",
+    ],
     dot: "primary",
   },
   {
-    time: "[Date]",
+    time: "December 6, 2025",
     title: "First Date",
-    sub: ["[Describe your first date]"],
+    sub: ["Shawarma, rice, chicken and a Scripture I could never forget. ❤️"],
     dot: "navy",
   },
   {
-    time: "[Date]",
+    time: "December 2025",
     title: "Made It Official",
-    sub: ["[When did you become a couple?]"],
+    sub: ["He asked to court me for one year and marry me immediately after."],
     dot: "primary",
   },
   {
     time: "Nov 14, 2026",
     title: "Wedding Day",
-    sub: ["The beginning of forever"],
+    sub: ["From group chat to forever."],
     dot: "primary",
   },
 ];
