@@ -1,4 +1,5 @@
 import { HomeHero } from "@/components/Hero";
+import { HomeStory } from "@/components/HomeStory";
 import { SplitSection } from "@/components/SplitSection";
 import { homeDetailRows } from "@/lib/data";
 
@@ -7,17 +8,7 @@ export default function HomePage() {
     <>
       <HomeHero image="/images/hero-actual.jpeg" />
 
-      <SplitSection
-        paperSlug="home-love-story"
-        image="/images/love-story-photo.png"
-        imageAlt="Abisoye and Favour together"
-        imageSide="left"
-        theme="light"
-        eyebrow="Our Love Story"
-        title="A love written in the stars"
-        body="From the first hello to forever — this is the story of how Abisoye and Favour found each other, fell in love, and decided to spend the rest of their lives together."
-        button={{ label: "Read Our Love Story", href: "/story" }}
-      />
+      <HomeStory />
 
       <SplitSection
         paperSlug="home-details"

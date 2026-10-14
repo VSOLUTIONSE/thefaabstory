@@ -75,7 +75,7 @@ export function HomeHero({
 }
 
 /**
- * Inner-page hero (details / story / registry) — 700px, flat overlay.
+ * Inner-page hero (details / story / registry) — 820px, flat overlay.
  */
 export function PageHero({
   image,
@@ -83,17 +83,19 @@ export function PageHero({
   title,
   subtitle,
   imagePosition = "object-center",
+  minHeight = "min-h-[640px] md:min-h-[820px]",
 }: {
   image: string;
   overlayColor: string;
   title: string;
   subtitle: string;
   imagePosition?: string;
+  minHeight?: string;
 }) {
   return (
     <section
       data-paper="page-hero"
-      className="relative flex min-h-[560px] flex-col items-center justify-center overflow-hidden px-6 text-center md:min-h-[700px]"
+      className={`relative flex flex-col items-center justify-center overflow-hidden px-6 text-center ${minHeight}`}
     >
       <Image
         src={image}

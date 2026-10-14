@@ -147,7 +147,7 @@ export function SplitSection({
     <section
       data-paper={paperSlug}
       className={`flex flex-col md:min-h-[640px] md:flex-row ${
-        dark ? "bg-navy" : "bg-surface"
+        dark ? "bg-primary" : "bg-surface"
       }`}
     >
       {imageSide === "left" ? (

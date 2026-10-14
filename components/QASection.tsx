@@ -3,11 +3,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { qaItems } from "@/lib/data";
 
+const GAP = 24;
+const SPEED = 0.35;
+const HOLD_TOGGLE_MS = 300;
+
 /**
  * Horizontal snap carousel of Q&A cards with dot indicators.
+ * Desktop: prev/next arrows. Mobile: slow auto-scroll that pauses while held
+ * (a short tap toggles it off/on).
  */
 export function QASection() {
   const trackRef = useRef<HTMLDivElement>(null);
+  const pausedRef = useRef(false);
+  const pointerStartRef = useRef(0);
   const [active, setActive] = useState(0);
 
   const scrollTo = useCallback((index: number) => {
@@ -16,6 +24,14 @@ export function QASection() {
     const card = track.children[index] as HTMLElement | undefined;
     if (!card) return;
     track.scrollTo({ left: card.offsetLeft - track.offsetLeft, behavior: "smooth" });
+  }, []);
+
+  const scrollByDir = useCallback((dir: 1 | -1) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.children[0] as HTMLElement | undefined;
+    if (!card) return;
+    track.scrollBy({ left: dir * (card.offsetWidth + GAP), behavior: "smooth" });
   }, []);
 
   useEffect(() => {
@@ -50,10 +66,72 @@ export function QASection() {
     };
   }, []);
 
+  useEffect(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const mq = window.matchMedia("(max-width: 767px)");
+    let mobile = mq.matches;
+    let direction = 1;
+    let raf = 0;
+
+    const onMqChange = () => {
+      mobile = mq.matches;
+    };
+    mq.addEventListener("change", onMqChange);
+
+    const tick = () => {
+      const max = track.scrollWidth - track.clientWidth;
+      if (mobile && !pausedRef.current && max > 1) {
+        let next = track.scrollLeft + SPEED * direction;
+        if (next >= max) {
+          next = max;
+          direction = -1;
+        } else if (next <= 0) {
+          next = 0;
+          direction = 1;
+        }
+        track.scrollLeft = next;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+
+    const pause = () => {
+      pausedRef.current = true;
+      pointerStartRef.current = Date.now();
+    };
+    const release = () => {
+      const held = Date.now() - pointerStartRef.current;
+      if (held < HOLD_TOGGLE_MS) {
+        pausedRef.current = !pausedRef.current;
+      } else {
+        pausedRef.current = false;
+      }
+    };
+
+    const cancelHold = () => {
+      pausedRef.current = false;
+    };
+
+    track.addEventListener("pointerdown", pause);
+    track.addEventListener("pointerup", release);
+    track.addEventListener("pointercancel", cancelHold);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      mq.removeEventListener("change", onMqChange);
+      track.removeEventListener("pointerdown", pause);
+      track.removeEventListener("pointerup", release);
+      track.removeEventListener("pointercancel", cancelHold);
+    };
+  }, []);
+
   return (
     <section
       data-paper="qa"
-      className="flex flex-col items-center justify-center bg-navy px-6 py-15 md:min-h-[500px] md:px-15"
+      className="flex flex-col items-center justify-center bg-primary px-6 py-15 md:min-h-[500px] md:px-15"
     >
       <div className="t-eyebrow mb-4 text-silver">Q&amp;A With The Couple</div>
 
@@ -61,7 +139,7 @@ export function QASection() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar flex w-full max-w-[1200px] snap-x snap-mandatory gap-6 overflow-x-auto py-[10px]"
+        className="no-scrollbar flex w-full max-w-[1200px] snap-x snap-mandatory max-md:snap-none gap-6 overflow-x-auto py-[10px]"
       >
         {qaItems.map((item) => (
           <article
@@ -82,19 +160,43 @@ export function QASection() {
         ))}
       </div>
 
-      <div className="mt-6 flex gap-2" role="group" aria-label="Q&A cards">
-        {qaItems.map((item, i) => (
-          <button
-            key={item.question}
-            type="button"
-            onClick={() => scrollTo(i)}
-            aria-label={`Go to card ${i + 1}`}
-            aria-current={active === i}
-            className={`h-2 w-2 cursor-pointer rounded-full transition-colors duration-200 ${
-              active === i ? "bg-silver" : "bg-silver-line hover:bg-silver-dim"
-            }`}
-          />
-        ))}
+      <div className="mt-6 flex items-center justify-center gap-5">
+        <button
+          type="button"
+          onClick={() => scrollByDir(-1)}
+          aria-label="Previous question"
+          className="hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-silver-line text-silver transition-colors duration-200 hover:border-silver hover:text-on-primary md:flex"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+          </svg>
+        </button>
+
+        <div className="flex gap-2" role="group" aria-label="Q&A cards">
+          {qaItems.map((item, i) => (
+            <button
+              key={item.question}
+              type="button"
+              onClick={() => scrollTo(i)}
+              aria-label={`Go to card ${i + 1}`}
+              aria-current={active === i}
+              className={`h-2 w-2 cursor-pointer rounded-full transition-colors duration-200 ${
+                active === i ? "bg-silver" : "bg-silver-line hover:bg-silver-dim"
+              }`}
+            />
+          ))}
+        </div>
+
+        <button
+          type="button"
+          onClick={() => scrollByDir(1)}
+          aria-label="Next question"
+          className="hidden h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-silver-line text-silver transition-colors duration-200 hover:border-silver hover:text-on-primary md:flex"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+          </svg>
+        </button>
       </div>
     </section>
   );

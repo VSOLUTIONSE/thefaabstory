@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { registryCategories, type RegistryCategory } from "@/lib/data";
+import { useEffect, useState } from "react";
+import { registryCategories, type RegistryCategory, type RegistryGroup } from "@/lib/data";
 
 function Chip({
   label,
@@ -28,7 +28,117 @@ function Chip({
   );
 }
 
-function CategoryBand({ category }: { category: RegistryCategory }) {
+function GroupModal({
+  group,
+  onClose,
+  onGift,
+}: {
+  group: RegistryGroup;
+  onClose: () => void;
+  onGift: () => void;
+}) {
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label={group.title}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      <button
+        type="button"
+        aria-label="Close dialog"
+        onClick={onClose}
+        className="absolute inset-0 h-full w-full cursor-default bg-ink/60"
+      />
+
+      <div className="relative z-10 flex max-h-[85vh] w-full max-w-[480px] flex-col overflow-y-auto bg-white">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3 right-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-surface/90 text-ink transition-colors duration-150 hover:bg-surface"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4.5 w-4.5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={group.image}
+          alt={group.title}
+          className="h-[200px] w-full shrink-0 object-cover"
+        />
+
+        <div className="flex flex-col gap-4 p-6">
+          <h3 className="font-display text-[22px] leading-7 text-ink">
+            {group.title}
+          </h3>
+
+          <p className="text-[14px] leading-6 text-muted">
+            {group.description ?? group.fundDesc}
+          </p>
+
+          {group.items && (
+            <ul className="flex flex-col gap-2">
+              {group.items.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-2 text-[13px] leading-5 text-muted"
+                >
+                  <span aria-hidden="true" className="text-primary">
+                    &middot;
+                  </span>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          )}
+
+          {group.price && (
+            <div className="mt-1 flex items-center justify-between border-t border-silver-line pt-4">
+              <span className="text-[10px] leading-3 tracking-[2px] text-muted uppercase">
+                Price
+              </span>
+              <span className="font-display text-[18px] leading-6 text-primary">
+                {group.price}
+              </span>
+            </div>
+          )}
+
+          <button
+            type="button"
+            onClick={onGift}
+            className="btn btn-solid mt-1 w-fit cursor-pointer"
+          >
+            Gift Us
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CategoryBand({
+  category,
+  onSelect,
+}: {
+  category: RegistryCategory;
+  onSelect: (group: RegistryGroup) => void;
+}) {
   const dark = category.theme === "dark";
 
   return (
@@ -36,7 +146,7 @@ function CategoryBand({ category }: { category: RegistryCategory }) {
       id={category.id}
       data-paper={`registry-${category.id}`}
       className={`flex scroll-mt-20 flex-col items-center px-6 py-15 md:px-15 ${
-        dark ? "bg-navy" : "bg-surface"
+        dark ? "bg-primary" : "bg-surface"
       }`}
     >
       <div
@@ -59,7 +169,17 @@ function CategoryBand({ category }: { category: RegistryCategory }) {
         {category.groups.map((group) => (
           <article
             key={group.title}
-            className={`flex flex-col overflow-hidden border transition-colors duration-200 ${
+            role="button"
+            tabIndex={0}
+            aria-haspopup="dialog"
+            onClick={() => onSelect(group)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                onSelect(group);
+              }
+            }}
+            className={`flex cursor-pointer flex-col overflow-hidden border transition-colors duration-200 ${
               dark
                 ? "border-silver-border bg-surface-dim hover:border-silver-line"
                 : "border-silver-line bg-white hover:border-primary"
@@ -140,6 +260,17 @@ export function RegistryExplorer() {
   const [openId, setOpenId] = useState<string | null>(
     registryCategories[0].id
   );
+  const [activeGroup, setActiveGroup] = useState<RegistryGroup | null>(null);
+
+  const handleGift = () => {
+    setActiveGroup(null);
+    setOpenId("cash-gifts");
+    window.setTimeout(() => {
+      document
+        .getElementById("cash-gifts")
+        ?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
+  };
 
   const toggle = (id: string) => {
     setOpenId((current) => (current === id ? null : id));
@@ -178,8 +309,20 @@ export function RegistryExplorer() {
         </section>
       ) : (
         visible.map((category) => (
-          <CategoryBand key={category.id} category={category} />
+          <CategoryBand
+            key={category.id}
+            category={category}
+            onSelect={setActiveGroup}
+          />
         ))
+      )}
+
+      {activeGroup && (
+        <GroupModal
+          group={activeGroup}
+          onClose={() => setActiveGroup(null)}
+          onGift={handleGift}
+        />
       )}
     </>
   );

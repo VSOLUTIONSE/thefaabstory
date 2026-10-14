@@ -34,9 +34,15 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: 76px;
+    scroll-padding-top: 100px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 76px;
+    }
   }
 
   body {

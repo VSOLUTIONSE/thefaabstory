@@ -140,6 +140,8 @@ export interface RegistryGroup {
   image: string;
   items?: string[];
   fundDesc?: string;
+  description?: string;
+  price?: string;
 }
 
 export interface RegistryCategory {
@@ -160,6 +162,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Bedroom essentials",
         image: "/registry/bedroom.jpg",
+        description:
+          "Everything we need to make our bedroom a soft place to land — fresh linens, warm light, and proper rest after long days.",
+        price: "₦120,000 – ₦250,000",
         items: [
           "Bedsheets and duvet sets",
           "Pillows and pillowcases",
@@ -171,6 +176,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Living room",
         image: "/registry/living-room.jpg",
+        description:
+          "The room where we'll host friends, unwind after work, and build the first memories of our home together.",
+        price: "₦100,000 – ₦300,000",
         items: [
           "Throw pillows and blankets",
           "Area rug",
@@ -183,6 +191,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Home appliances",
         image: "/registry/home-appliances.jpg",
+        description:
+          "The big practical pieces that keep a Nigerian household running comfortably through every season.",
+        price: "₦250,000 – ₦800,000",
         items: [
           "Rechargeable standing fan",
           "Air conditioner",
@@ -195,6 +206,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Home finishing touches",
         image: "/registry/finishing.jpg",
+        description:
+          "The small finishing details that turn four walls into a home that feels warm and lived-in.",
+        price: "₦80,000 – ₦200,000",
         items: [
           "Dining set",
           "Laundry basket",
@@ -218,18 +232,27 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Honeymoon fund",
         image: "/registry/honeymoon.jpg",
+        description:
+          "Help us create beautiful memories on our first trip as a married couple. Any contribution, small or large, brings us closer to the getaway we've been dreaming of.",
+        price: "Any amount",
         fundDesc:
           "Help us create beautiful memories on our first trip as a married couple.",
       },
       {
         title: "Date night fund",
         image: "/registry/date-night.jpg",
+        description:
+          "For dinner dates, movie nights and intentional time together — so the romance never stops after the wedding.",
+        price: "Any amount",
         fundDesc:
           "For dinner dates, movie nights and intentional time together.",
       },
       {
         title: "Couples' spiritual growth",
         image: "/registry/spiritual.jpg",
+        description:
+          "Resources that help us keep Christ at the centre of our marriage as we grow together in faith.",
+        price: "₦30,000 – ₦150,000",
         items: [
           "Couples' devotional books",
           "Marriage enrichment programmes",
@@ -240,6 +263,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Memories fund",
         image: "/registry/memories.jpg",
+        description:
+          "Toward the moments we'll look back on for decades — portraits, getaways, and anniversary celebrations.",
+        price: "₦50,000 – ₦200,000",
         items: [
           "Anniversary photoshoot",
           "Couples' portrait",
@@ -261,29 +287,44 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Our Home Fund",
         image: "/registry/home-fund.jpg",
+        description:
+          "For furniture, rent-related expenses or setting up our home — the foundation of our first years together.",
+        price: "Any amount",
         fundDesc:
           "For furniture, rent-related expenses or setting up our home.",
       },
       {
         title: "Honeymoon Fund",
         image: "/registry/honeymoon-fund.jpg",
+        description:
+          "Help us fund our first adventure together as husband and wife.",
+        price: "Any amount",
         fundDesc: "Help us fund our first adventure together.",
       },
       {
         title: "Our Future Fund",
         image: "/registry/future-fund.jpg",
+        description:
+          "A contribution towards our shared future and long-term goals as a family.",
+        price: "Any amount",
         fundDesc:
           "A contribution towards our shared future and long-term goals.",
       },
       {
         title: "Bless Our Marriage",
         image: "/registry/bless-marriage.jpg",
+        description:
+          "A monetary gift to support us as we begin this new chapter — every blessing matters.",
+        price: "Any amount",
         fundDesc:
           "A monetary gift to support us as we begin this new chapter.",
       },
       {
         title: "Power & Comfort Fund",
         image: "/registry/power-fund.jpg",
+        description:
+          "Towards an inverter, solar setup or other home essentials that keep the lights on and the home comfortable.",
+        price: "Any amount",
         fundDesc:
           "Towards an inverter, solar setup or other home essentials.",
       },
@@ -299,6 +340,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Cooking essentials",
         image: "/registry/cookware.jpg",
+        description:
+          "Quality cookware for the everyday meals and Sunday rice that will define our kitchen.",
+        price: "₦100,000 – ₦250,000",
         items: [
           "Quality pots and pans",
           "Pressure cooker",
@@ -311,6 +355,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Kitchen appliances",
         image: "/registry/kitchen-appliances.jpg",
+        description:
+          "The time-saving appliances that make meal prep easier on busy weekday evenings.",
+        price: "₦150,000 – ₦500,000",
         items: [
           "Blender",
           "Air fryer",
@@ -325,6 +372,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Dining & serving",
         image: "/registry/dining-serving.jpg",
+        description:
+          "Tableware for quiet dinners at home and the many guests we love hosting.",
+        price: "₦60,000 – ₦150,000",
         items: [
           "Dinner plates and bowls",
           "Cutlery set",
@@ -338,6 +388,9 @@ export const registryCategories: RegistryCategory[] = [
       {
         title: "Everyday Nigerian kitchen needs",
         image: "/registry/kitchen-everyday.jpg",
+        description:
+          "The practical staples every Nigerian home needs — from storage for rice and beans to a reliable gas setup.",
+        price: "₦80,000 – ₦200,000",
         items: [
           "Airtight containers for rice, beans and garri",
           "Spice jars and seasoning organisers",

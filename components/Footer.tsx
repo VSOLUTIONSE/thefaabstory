@@ -65,6 +65,14 @@ export function Footer() {
           ))}
         </ul>
       </nav>
+
+      <div className="mt-10 text-[11px] leading-4 tracking-[1px] text-silver-faint">
+        © 2026 {BRAND}. All rights reserved.
+      </div>
+
+      <div className="mt-2 text-[11px] leading-4 tracking-[1px] text-silver-faint">
+        Designed by VarySoft Technologies · +234 9014535419
+      </div>
     </footer>
   );
 }

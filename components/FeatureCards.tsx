@@ -7,7 +7,7 @@ export function FeatureCards() {
   return (
     <section
       data-paper="feature-band"
-      className="flex flex-col items-center justify-center bg-navy px-6 py-20 text-center md:min-h-[700px] md:px-20"
+      className="flex flex-col items-center justify-center bg-primary px-6 py-20 text-center md:min-h-[700px] md:px-20"
     >
       <div className="t-eyebrow mb-5 text-silver">church wedding/blessing</div>
 

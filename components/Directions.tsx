@@ -1,5 +1,5 @@
 import { directionsText, mapsUrl } from "@/lib/data";
-import { MapIcon, MapPinIcon } from "./icons";
+import { MapIcon } from "./icons";
 
 /**
  * Directions band — copy left, venue tile + maps button right.
@@ -22,14 +22,15 @@ export function Directions() {
         </div>
 
         <div className="flex flex-col items-center gap-6 md:w-1/2">
-          <div className="g1 flex h-[280px] w-full flex-col items-center justify-center gap-4 px-6 text-center">
-            <MapPinIcon className="h-12 w-12 text-silver" />
-            <div className="font-display text-[20px] leading-6 text-on-primary">
-              Powelife Christian Faith International
-            </div>
-            <div className="text-[13px] leading-4 text-silver-dim">
-              Iyànà, Ilogbo
-            </div>
+          <div className="flex h-[280px] w-full items-center justify-center border border-silver-line">
+            <iframe
+              title="Powelife Christian Faith International on Google Maps"
+              src="https://maps.google.com/maps?q=Powelife%20Christian%20Faith%20International%20153%20Shibiri%20road%20Ojo%20Lagos&z=16&output=embed"
+              className="h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
           </div>
 
           <a

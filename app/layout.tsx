@@ -3,6 +3,7 @@ import { Lora, Open_Sans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { AgentationToolbar } from "@/components/Agentation";
 import { MusicFab, MusicProvider } from "@/components/music";
 
 const lora = Lora({
@@ -38,6 +39,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Footer />
           <MusicFab />
         </MusicProvider>
+        <AgentationToolbar />
       </body>
     </html>
   );
