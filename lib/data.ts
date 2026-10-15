@@ -173,7 +173,7 @@ export const registryCategories: RegistryCategory[] = [
     groups: [
       {
         title: "Bedroom & comfort",
-        image: "/registry/bedroom.jpg",
+        image: "/registry/modern-bedroom.jpg",
         description:
           "A soft place to land — fresh linens, warm light, and proper rest after long days.",
         price: "₦120,000 – ₦250,000",
@@ -236,7 +236,7 @@ export const registryCategories: RegistryCategory[] = [
     groups: [
       {
         title: "A monetary gift",
-        image: "/registry/future-fund.jpg",
+        image: "/registry/money-gift.jpg",
         description:
           "For those who prefer to give cash, your gift will be thoughtfully directed towards our shared plans and the things we value as a couple.",
         price: "Any amount",

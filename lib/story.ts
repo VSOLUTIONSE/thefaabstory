@@ -2,7 +2,7 @@ export const storyIntro =
   "From the VSF (Team Radiant) to a Love Written by God ❤️";
 
 export const storyOpeningParagraphs = [
-  "Our story didn't begin with butterflies, grand romantic gestures, or love at first sight. It began in the voyage single fellowship group chat called Team Radiant, where Abisoye was the team lead and Favour was simply one of the members she assigned Word of the Day duties to. 😂",
+  "Our story didn't begin with butterflies, grand romantic gestures, or love at first sight. It began in the Votage Singles Fellowship group chat called Team Radiant, where Abisoye was the team lead and Favour was simply one of the members she assigned Word of the Day duties to. 😂",
   "From playful banter and church encounters to rejected offers of help and mistaken assumptions, our paths kept crossing. Neither of us knew that these seemingly ordinary moments were quietly leading us somewhere special.",
 ];
 

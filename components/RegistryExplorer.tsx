@@ -276,33 +276,10 @@ function CategoryBand({
                 )}
               </div>
 
-              {group.price && (
-                <div
-                  className={`mt-auto flex items-center justify-between border-t pt-4 ${
-                    dark ? "border-silver-border" : "border-silver-line"
-                  }`}
-                >
-                  <span
-                    className={`text-[10px] leading-3 tracking-[2px] uppercase ${
-                      dark ? "text-silver" : "text-muted"
-                    }`}
-                  >
-                    Price
-                  </span>
-                  <span
-                    className={`font-display text-[18px] leading-6 ${
-                      dark ? "text-silver" : "text-primary"
-                    }`}
-                  >
-                    {group.price}
-                  </span>
-                </div>
-              )}
-
               <button
                 type="button"
                 onClick={onGift}
-                className="btn btn-solid w-fit cursor-pointer"
+                className="btn btn-solid mt-auto w-fit cursor-pointer"
               >
                 Gift Us
               </button>

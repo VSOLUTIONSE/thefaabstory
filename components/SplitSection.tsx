@@ -92,7 +92,7 @@ export function SplitSection({
         {chip && chipPosition === "after-title" && chipEl}
 
         {body && (
-          <p className={`t-body mb-8 ${dark ? "text-silver-soft" : "text-muted"}`}>
+          <p className={`t-body mb-8 whitespace-pre-line ${dark ? "text-silver-soft" : "text-muted"}`}>
             {body}
           </p>
         )}

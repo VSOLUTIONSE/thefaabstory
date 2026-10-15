@@ -17,6 +17,18 @@ export function QASection() {
   const pausedRef = useRef(false);
   const pointerStartRef = useRef(0);
   const [active, setActive] = useState(0);
+  const [expanded, setExpanded] = useState<Record<string, boolean>>({});
+  const [truncated, setTruncated] = useState<Record<string, boolean>>({});
+
+  const measure = (key: string) => (el: HTMLParagraphElement | null) => {
+    if (!el) return;
+    const over = el.scrollHeight > el.clientHeight + 4;
+    setTruncated((prev) => (prev[key] === over ? prev : { ...prev, [key]: over }));
+  };
+
+  const toggleExpand = (key: string) => {
+    setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
 
   const scrollTo = useCallback((index: number) => {
     const track = trackRef.current;
@@ -141,33 +153,85 @@ export function QASection() {
         ref={trackRef}
         className="no-scrollbar flex w-full max-w-[1200px] snap-x snap-mandatory max-md:snap-none gap-6 overflow-x-auto py-[10px]"
       >
-        {qaItems.map((item) => (
-          <article
-            key={item.question}
-            className="flex w-[380px] max-w-[85vw] shrink-0 snap-start flex-col border border-silver-border bg-surface-dim p-8 transition-colors duration-200 hover:border-silver-line"
-          >
-            <h3 className="mb-4 font-display text-[18px] leading-[22px] text-silver">
-              {item.question}
-            </h3>
-            <p
-              title={item.answerA}
-              className="mb-6 line-clamp-4 whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft"
+        {qaItems.map((item, i) => {
+          const keyA = `${i}-a`;
+          const keyB = `${i}-b`;
+          return (
+            <article
+              key={item.question}
+              className="flex w-[380px] max-w-[85vw] shrink-0 snap-start flex-col border border-silver-border bg-surface-dim p-8 transition-colors duration-200 hover:border-silver-line"
             >
-              {item.answerA}
-            </p>
-            {item.answerB && (
-              <>
-                <div className="mb-6 h-px w-full bg-silver-hair" aria-hidden="true" />
+              <h3 className="mb-4 font-display text-[18px] leading-[22px] text-silver">
+                {item.question}
+              </h3>
+
+              <div className="mb-6">
                 <p
-                  title={item.answerB}
-                  className="line-clamp-4 whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft"
+                  ref={measure(keyA)}
+                  className={`${
+                    expanded[keyA] ? "line-clamp-none" : "line-clamp-4"
+                  } whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft`}
                 >
-                  {item.answerB}
+                  {item.answerA}
                 </p>
-              </>
-            )}
-          </article>
-        ))}
+                {expanded[keyA] ? (
+                  <button
+                    type="button"
+                    onClick={() => toggleExpand(keyA)}
+                    className="mt-2 cursor-pointer text-[11px] leading-4 tracking-[2px] text-silver-soft uppercase transition-colors duration-150 hover:underline"
+                  >
+                    Read less
+                  </button>
+                ) : (
+                  truncated[keyA] && (
+                    <button
+                      type="button"
+                      onClick={() => toggleExpand(keyA)}
+                      className="mt-2 cursor-pointer text-[11px] leading-4 tracking-[2px] text-silver-soft uppercase transition-colors duration-150 hover:underline"
+                    >
+                      Read more
+                    </button>
+                  )
+                )}
+              </div>
+
+              {item.answerB && (
+                <>
+                  <div className="mb-6 h-px w-full bg-silver-hair" aria-hidden="true" />
+                  <div>
+                    <p
+                      ref={measure(keyB)}
+                      className={`${
+                        expanded[keyB] ? "line-clamp-none" : "line-clamp-4"
+                      } whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft`}
+                    >
+                      {item.answerB}
+                    </p>
+                    {expanded[keyB] ? (
+                      <button
+                        type="button"
+                        onClick={() => toggleExpand(keyB)}
+                        className="mt-2 cursor-pointer text-[11px] leading-4 tracking-[2px] text-silver-soft uppercase transition-colors duration-150 hover:underline"
+                      >
+                        Read less
+                      </button>
+                    ) : (
+                      truncated[keyB] && (
+                        <button
+                          type="button"
+                          onClick={() => toggleExpand(keyB)}
+                          className="mt-2 cursor-pointer text-[11px] leading-4 tracking-[2px] text-silver-soft uppercase transition-colors duration-150 hover:underline"
+                        >
+                          Read more
+                        </button>
+                      )
+                    )}
+                  </div>
+                </>
+              )}
+            </article>
+          );
+        })}
       </div>
 
       <div className="mt-6 flex items-center justify-center gap-5">

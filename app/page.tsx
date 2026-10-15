@@ -29,8 +29,12 @@ export default function HomePage() {
         imageSide="left"
         theme="light"
         eyebrow="Help set our new home"
-        title="Your presence is our present"
-        body="The greatest gift you can give us is your presence on our special day. However, if you wish to bless us with a gift, we have prepared a registry with a few items we would love as we begin this new chapter together."
+        title="A GIFT to our Journey together"
+        body={`As we prepare to begin this beautiful new chapter together, we'd greatly appreciate your love, prayers, and support of our family and friends.
+
+Your presence at our wedding means so much to us. If you'd also love to bless us with a gift, we've put together a small selection of things we'd appreciate as we build our life together.
+
+Please know that every gift, prayer, and expression of love is deeply appreciated.`}
         button={{ label: "Gift Us", href: "/registry" }}
       />
     </>

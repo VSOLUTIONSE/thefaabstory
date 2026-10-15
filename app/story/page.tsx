@@ -50,7 +50,7 @@ export default function StoryPage() {
         openingParagraphs={[
           "When I joined Voltage Church, I was looking for a place to grow in my faith, fellowship with other believers, and hopefully find the love of my life. I knew the kind of woman I wanted: someone who loved God, had a beautiful heart, was caring, respectful, and fun to be around.",
           "Little did I know that my search would lead me to her. 🥰",
-          "It all began in the Voltage Singles Fellowship, where she served as a group leader. When I joined the WhatsApp group, she welcomed me warmly. It was a simple conversation, but her name stuck with me, and I found myself wanting to know more about her.",
+          "It all began in the Votage Singles Fellowship, where she served as a group leader. When I joined the WhatsApp group, she welcomed me warmly. It was a simple conversation, but her name stuck with me, and I found myself wanting to know more about her.",
         ]}
         restParagraphs={[
           "When we eventually met at a Connect meeting, I discovered her playful side. She teased me, we exchanged greetings, and then she ran off! 😂 Funny enough, this became a pattern. Whenever I got the chance to talk to her, she somehow disappeared before we could have a proper conversation.",
