@@ -65,12 +65,17 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     const onPlay = () => {
       startedRef.current = true;
       setPlaying(true);
-      if (audio.volume < SOFT_VOLUME) fadeIn();
+      if (!audio.muted && audio.volume < SOFT_VOLUME) fadeIn();
     };
     const onPause = () => setPlaying(false);
 
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
+
+    // Mobile browsers block autoplay with sound — start muted (allowed),
+    // then unmute with a fade on the visitor's first interaction.
+    const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
+    if (coarsePointer) audio.muted = true;
 
     const attempt = () => {
       if (dismissedRef.current) return;
@@ -82,7 +87,15 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     attempt();
 
     const onGesture = () => {
-      if (!startedRef.current && !dismissedRef.current) attempt();
+      if (dismissedRef.current) return;
+      if (audio.muted) {
+        // First interaction: kick off from the top of the song, with sound.
+        audio.muted = false;
+        audio.currentTime = 0;
+        audio.volume = 0;
+        fadeIn();
+      }
+      if (!startedRef.current || audio.paused) attempt();
     };
     window.addEventListener("pointerdown", onGesture, { once: true });
     window.addEventListener("keydown", onGesture, { once: true });

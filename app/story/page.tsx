@@ -24,7 +24,7 @@ export default function StoryPage() {
         imageAlt="Abisoye and Favour when they met"
         imageSide="left"
         title="How I Met My Almost-Husband"
-        lede="The Confession of His Team Lead 😂"
+        lede="The Confession of His Team Lead"
         openingParagraphs={[
           "If anybody had told me my husband was hiding in my church fellowship group chat, I would have asked them to face their front. 😂",
           "I was the team lead of Team Radiant in the Votage Singles Fellowship when Favour Emmanuel joined. I asked him to post a picture like every new member, and I told the guys how handsome they all looked. Please, I was only welcoming them! Abeg. 😂 Then I assigned him Word of the Day, and whenever he forgot, his humble team lead would slide into his DM: \"Ah, bro, we never see Word of the Day o!\" Little did I know those DMs were quietly opening a door.",
@@ -43,7 +43,7 @@ export default function StoryPage() {
       <PerspectiveSection
         paperSlug="his-perspective"
         image="/images/tomboy.jpeg"
-        imagePosition="object-[50%_38%]"
+        imagePosition="object-[50%_30%]"
         imageAlt="Abisoye, Favour's priceless treasure"
         imageSide="right"
         title="From a Tomboy to My Priceless Treasure"

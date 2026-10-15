@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { registryCategories, type RegistryCategory, type RegistryGroup } from "@/lib/data";
+import { useState } from "react";
+import { registryCategories, type RegistryCategory } from "@/lib/data";
 
 function Chip({
   label,
@@ -28,116 +28,12 @@ function Chip({
   );
 }
 
-function GroupModal({
-  group,
-  onClose,
-  onGift,
-}: {
-  group: RegistryGroup;
-  onClose: () => void;
-  onGift: () => void;
-}) {
-  useEffect(() => {
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
-    };
-  }, [onClose]);
-
-  return (
-    <div
-      role="dialog"
-      aria-modal="true"
-      aria-label={group.title}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4"
-    >
-      <button
-        type="button"
-        aria-label="Close dialog"
-        onClick={onClose}
-        className="absolute inset-0 h-full w-full cursor-default bg-ink/60"
-      />
-
-      <div className="relative z-10 flex max-h-[85vh] w-full max-w-[480px] flex-col overflow-y-auto bg-white">
-        <button
-          type="button"
-          onClick={onClose}
-          aria-label="Close"
-          className="absolute top-3 right-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-surface/90 text-ink transition-colors duration-150 hover:bg-surface"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4.5 w-4.5" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={group.image}
-          alt={group.title}
-          className="h-[200px] w-full shrink-0 object-cover"
-        />
-
-        <div className="flex flex-col gap-4 p-6">
-          <h3 className="font-display text-[22px] leading-7 text-ink">
-            {group.title}
-          </h3>
-
-          <p className="text-[14px] leading-6 text-muted">
-            {group.description ?? group.fundDesc}
-          </p>
-
-          {group.items && (
-            <ul className="flex flex-col gap-2">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className="flex gap-2 text-[13px] leading-5 text-muted"
-                >
-                  <span aria-hidden="true" className="text-primary">
-                    &middot;
-                  </span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-          )}
-
-          {group.price && (
-            <div className="mt-1 flex items-center justify-between border-t border-silver-line pt-4">
-              <span className="text-[10px] leading-3 tracking-[2px] text-muted uppercase">
-                Price
-              </span>
-              <span className="font-display text-[18px] leading-6 text-primary">
-                {group.price}
-              </span>
-            </div>
-          )}
-
-          <button
-            type="button"
-            onClick={onGift}
-            className="btn btn-solid mt-1 w-fit cursor-pointer"
-          >
-            Gift Us
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function CategoryBand({
   category,
-  onSelect,
+  onGift,
 }: {
   category: RegistryCategory;
-  onSelect: (group: RegistryGroup) => void;
+  onGift: () => void;
 }) {
   const dark = category.theme === "dark";
 
@@ -169,20 +65,10 @@ function CategoryBand({
         {category.groups.map((group) => (
           <article
             key={group.title}
-            role="button"
-            tabIndex={0}
-            aria-haspopup="dialog"
-            onClick={() => onSelect(group)}
-            onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                onSelect(group);
-              }
-            }}
-            className={`flex cursor-pointer flex-col overflow-hidden border transition-colors duration-200 ${
+            className={`flex flex-col overflow-hidden border ${
               dark
-                ? "border-silver-border bg-surface-dim hover:border-silver-line"
-                : "border-silver-line bg-white hover:border-primary"
+                ? "border-silver-border bg-surface-dim"
+                : "border-silver-line bg-white"
             }`}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -190,50 +76,79 @@ function CategoryBand({
               src={group.image}
               alt={group.title}
               loading="lazy"
-              className="h-[180px] w-full object-cover"
+              className="h-[240px] w-full object-cover"
             />
 
-            <div className="flex flex-1 flex-col p-5">
-              <h3
-                className={`mb-3 font-display text-[18px] leading-[22px] ${
-                  dark ? "text-on-primary" : "text-ink"
-                }`}
-              >
-                {group.title}
-              </h3>
+            <div className="flex flex-1 flex-col gap-4 p-5">
+              <div className="flex flex-col gap-3">
+                <h3
+                  className={`font-display text-[18px] leading-[22px] ${
+                    dark ? "text-on-primary" : "text-ink"
+                  }`}
+                >
+                  {group.title}
+                </h3>
 
-              {group.fundDesc && (
                 <p
                   className={`text-[13px] leading-5 ${
                     dark ? "text-silver-soft" : "text-muted"
                   }`}
                 >
-                  {group.fundDesc}
+                  {group.description ?? group.fundDesc}
                 </p>
+
+                {group.items && (
+                  <ul className="flex flex-col gap-2">
+                    {group.items.map((item) => (
+                      <li
+                        key={item}
+                        className={`flex gap-2 text-[13px] leading-4 ${
+                          dark ? "text-silver-soft" : "text-muted"
+                        }`}
+                      >
+                        <span
+                          aria-hidden="true"
+                          className={dark ? "text-silver" : "text-primary"}
+                        >
+                          &middot;
+                        </span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              {group.price && (
+                <div
+                  className={`mt-auto flex items-center justify-between border-t pt-4 ${
+                    dark ? "border-silver-border" : "border-silver-line"
+                  }`}
+                >
+                  <span
+                    className={`text-[10px] leading-3 tracking-[2px] uppercase ${
+                      dark ? "text-silver" : "text-muted"
+                    }`}
+                  >
+                    Price
+                  </span>
+                  <span
+                    className={`font-display text-[18px] leading-6 ${
+                      dark ? "text-silver" : "text-primary"
+                    }`}
+                  >
+                    {group.price}
+                  </span>
+                </div>
               )}
 
-              {group.items && (
-                <ul className="flex flex-col gap-2">
-                  {group.items.map((item) => (
-                    <li
-                      key={item}
-                      className={`flex gap-2 text-[13px] leading-4 ${
-                        dark ? "text-silver-soft" : "text-muted"
-                      }`}
-                    >
-                      <span
-                        aria-hidden="true"
-                        className={
-                          dark ? "text-silver" : "text-primary"
-                        }
-                      >
-                        &middot;
-                      </span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <button
+                type="button"
+                onClick={onGift}
+                className="btn btn-solid w-fit cursor-pointer"
+              >
+                Gift Us
+              </button>
             </div>
           </article>
         ))}
@@ -255,15 +170,15 @@ function CategoryBand({
 /**
  * Category chips + accordion: items render only for the clicked category
  * (Home & Living first and open by default; clicking the active chip collapses).
+ * Each card shows description, items, price, and a Gift Us button directly —
+ * no modal. "Gift Us" opens the Cash Gifts category below.
  */
 export function RegistryExplorer() {
   const [openId, setOpenId] = useState<string | null>(
     registryCategories[0].id
   );
-  const [activeGroup, setActiveGroup] = useState<RegistryGroup | null>(null);
 
   const handleGift = () => {
-    setActiveGroup(null);
     setOpenId("cash-gifts");
     window.setTimeout(() => {
       document
@@ -312,17 +227,9 @@ export function RegistryExplorer() {
           <CategoryBand
             key={category.id}
             category={category}
-            onSelect={setActiveGroup}
+            onGift={handleGift}
           />
         ))
-      )}
-
-      {activeGroup && (
-        <GroupModal
-          group={activeGroup}
-          onClose={() => setActiveGroup(null)}
-          onGift={handleGift}
-        />
       )}
     </>
   );

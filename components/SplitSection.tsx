@@ -67,7 +67,7 @@ export function SplitSection({
         alt={imageAlt}
         fill
         sizes="(max-width: 768px) 100vw, 55vw"
-        className="object-cover object-center"
+        className="object-cover object-[50%_28%]"
       />
     </figure>
   );

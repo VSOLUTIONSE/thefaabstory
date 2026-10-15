@@ -16,7 +16,7 @@ export function HomeStory() {
           alt="Abisoye and Favour together"
           fill
           sizes="(max-width: 768px) 100vw, 55vw"
-          className="object-cover object-center"
+          className="object-cover object-[50%_28%]"
         />
       </figure>
 
@@ -27,7 +27,7 @@ export function HomeStory() {
           <h2 className="t-heading mb-6 text-ink">A Love Written by God</h2>
 
           <p className="t-body mb-8 text-muted">
-            It started in a Votage Singles fellowship group chat called Team
+            It started at the Votage Singles fellowship group chat called Team
             Radiant, where Abisoye was team lead and Favour was just a member
             she gave Word of the Day duties to. 😂 A few rejected offers of
             help, one very long phone call and a nudge from Pastor Mercy later,
