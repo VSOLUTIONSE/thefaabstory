@@ -20,23 +20,26 @@ export default function StoryPage() {
 
       <PerspectiveSection
         paperSlug="her-perspective"
-        image="/images/my-almost-husband.jpeg"
-        imageAlt="Abisoye and Favour when they met"
+        image="/images/written-in-stars.jpeg"
+        imageAlt="Abisoye and Favour in matching FAAB Story outfits"
+        imagePosition="object-[50%_22%]"
         imageSide="left"
-        title="How I Met My Almost-Husband"
-        lede="The Confession of His Team Lead"
+        title="How I Met My Almost-Husband ❤️"
+        lede="The Confession of His Team Lead 😂"
         openingParagraphs={[
-          "If anybody had told me my husband was hiding in my church fellowship group chat, I would have asked them to face their front. 😂",
-          "I was the team lead of Team Radiant in the Votage Singles Fellowship when Favour Emmanuel joined. I asked him to post a picture like every new member, and I told the guys how handsome they all looked. Please, I was only welcoming them! Abeg. 😂 Then I assigned him Word of the Day, and whenever he forgot, his humble team lead would slide into his DM: \"Ah, bro, we never see Word of the Day o!\" Little did I know those DMs were quietly opening a door.",
+          "If anybody had told me my husband was hiding somewhere in my church fellowship group chat, I would have asked them to face their front. 😂",
+          "I was the team lead of Team Radiant in the Votage Singles Fellowship, and my mission was simple: keep the group chat active. Then Favour Emmanuel joined. I asked him to introduce himself and post a picture, like I did with every new member, and I told the guys how handsome they all looked. Please, I was only welcoming them! I wasn't planning a wedding. Abeg. 😂",
+          "I assigned Favour Word of the Day, and whenever he forgot, his humble team lead would slide into his DM: \"Ah, bro, we never see Word of the Day o!\" Little did I know those innocent DMs were quietly opening a door.",
         ]}
         restParagraphs={[
-          "I'd once called him Favour Thomas (don't ask), rejected his offer to fix my faulty phone, and was deep in my \"I will not collect gifts from men and fall in love foolishly\" era. Then on November 2nd, he said he wanted to get to know me better. He commented \"Pretty\" on my picture, and I had to remind him that admiring me is not knowing me. 😂 We finally talked for hours, and when a rash he said would dry up by morning actually did, I thought, \"I love me a prophetic man, a priest!\" Kaman de Kapa!! 😂😭",
-          "Then Pastor Mercy caught him following me around and asked if he liked me. \"Like like, or marrying like?\" He said marrying like! She told him to take me on a date fast, before I got hijacked, because I was hot cake. 😂 I was wishing the ground would swallow me.",
-          "On our first date (shawarma, rice and chicken), Favour spoke words that echoed a Scripture I'd received months earlier about the love my future husband would show me, like Christ's love for the Church. I still took him to God in prayer, but my heart was softening.",
-          "Then he asked how long I could court a man before marriage. \"One year at most,\" I said. He said he'd court me for one year and marry me immediately after.",
-          "Sir, excuse me? Who sent you? 😂😭❤️",
-          "From group chat to forever, my almost-husband became my answered prayer. On November 14th, our forever begins. ❤️💍",
-          "I can't wait to do life with BEE'S!! 🫣",
+          "We'd met in church before, but all I remember is mistakenly calling him Favour Thomas. Don't ask me how I got there. 😂 Then came the wedding pictures I teased him about, a fine girl who made me suspect he had a girlfriend, and an offer to fix my faulty phone that I rejected. I was in my \"I will not collect gifts from men and fall in love foolishly\" era, protecting my peace with all my strength.",
+          "Then on November 2nd, he messaged that he wanted to get to know me better. He barely asked a question before disappearing, then commented \"Pretty\" on my picture, and I had to remind him that admiring me is not the same as knowing me. 😂 He asked to call, and we talked for hours. Between that call, a rash he confidently said would dry up by morning (it did! My immediate thought: \"I love me a prophetic man, a priest!\" Kaman de Kapa!! 😂😭) and more church encounters, I began to think there might be something worth exploring.",
+          "Then Pastor Mercy caught him following me around and asked if he liked me. He said yes. She asked, \"Like like, or marrying like?\" and this man confirmed it was marrying like! Then she told him to take me on a date fast, before I got hijacked, because I was hot cake. 😂 Meanwhile, I was wishing the ground would open and swallow me. If I were fair, my cheeks would have turned red.",
+          "On our first date, Favour said words that echoed a Scripture I'd received months earlier about the kind of love God had for my future husband to show me, one that reflected Christ's love for the Church. I still took him to God in prayer, because I wasn't about to enter another relationship without seeking His will, but my heart was softening.",
+          "Then he asked how long I could court a man before marriage. I said one year at most. He said he'd court me for one year and marry me immediately after.",
+          "Sir, excuse me? Who sent you? 😂😭",
+          "And here we are: the team lead and the Word of the Day guy, going from group chat to forever. I see God's hand in every ordinary moment, unexpected conversation and confirmation along the way. My almost-husband became my answered prayer, and on November 14th, our forever begins. ❤️💍",
+          "I can't wait to do life with you, BEE'S!! 🫣",
         ]}
       />
 
@@ -48,7 +51,7 @@ export default function StoryPage() {
         imageSide="right"
         title="From a Tomboy to My Priceless Treasure"
         openingParagraphs={[
-          "When I joined Voltage Church, I was looking for a place to grow in my faith, fellowship with other believers, and hopefully find the love of my life. I knew the kind of woman I wanted: someone who loved God, had a beautiful heart, was caring, respectful, and fun to be around.",
+          "When I joined Votage Church, I was looking for a place to grow in my faith, fellowship with other believers, and hopefully find the love of my life. I knew the kind of woman I wanted: someone who loved God, had a beautiful heart, was caring, respectful, and fun to be around.",
           "Little did I know that my search would lead me to her. 🥰",
           "It all began in the Votage Singles Fellowship, where she served as a group leader. When I joined the WhatsApp group, she welcomed me warmly. It was a simple conversation, but her name stuck with me, and I found myself wanting to know more about her.",
         ]}

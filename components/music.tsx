@@ -72,10 +72,22 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     audio.addEventListener("play", onPlay);
     audio.addEventListener("pause", onPause);
 
-    // Mobile browsers block autoplay with sound — start muted (allowed),
-    // then unmute with a fade on the visitor's first interaction.
+    // Browsers only allow autoplay when muted. Start muted everywhere, then
+    // unmute with a fade: on desktop as soon as playback begins; on mobile
+    // (or when desktop autoplay is blocked) on the visitor's first gesture.
+    audio.muted = true;
+
+    const unmute = () => {
+      if (!audio.muted) return;
+      audio.muted = false;
+      audio.volume = 0;
+      fadeIn();
+    };
+
     const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    if (coarsePointer) audio.muted = true;
+    if (!coarsePointer) {
+      audio.addEventListener("play", unmute, { once: true });
+    }
 
     const attempt = () => {
       if (dismissedRef.current) return;
@@ -88,13 +100,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
 
     const onGesture = () => {
       if (dismissedRef.current) return;
-      if (audio.muted) {
-        // First interaction: kick off from the top of the song, with sound.
-        audio.muted = false;
-        audio.currentTime = 0;
-        audio.volume = 0;
-        fadeIn();
-      }
+      unmute();
       if (!startedRef.current || audio.paused) attempt();
     };
     window.addEventListener("pointerdown", onGesture, { once: true });
