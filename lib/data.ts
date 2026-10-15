@@ -107,34 +107,43 @@ export const mapsUrl =
 export interface QAItem {
   question: string;
   answerA: string;
-  answerB: string;
+  answerB?: string;
 }
 
 export const qaItems: QAItem[] = [
   {
     question: "What is your favorite thing about each other?",
-    answerA: "[Abisoye: share what you love most about Favour]",
-    answerB: "[Favour: share what you love most about Abisoye]",
+    answerA:
+      "My favorite thing is how intentional he is about me...bro listens!!",
+    answerB:
+      "My favourite thing about her is how selfless she can be and its shows in every of her actions, also her smile",
   },
   {
     question: "What are you most excited about for the wedding?",
-    answerA: "[Abisoye: what are you looking forward to?]",
-    answerB: "[Favour: what are you looking forward to?]",
+    answerA:
+      "Honestly, I cant pick one thing, but it sure feels good to be seen, loved, CHOSEN.....Feels surreal",
+    answerB:
+      "Well, I’m excited about the fact that I’ll get the chance to love and cherish my Bee as we both grow into the future and the plans God has for us. ❤️",
   },
   {
     question: "What is your vision for your future together?",
-    answerA: "[Abisoye: share your dreams]",
-    answerB: "[Favour: share your dreams]",
+    answerA:
+      "My future is to build a beautiful and God centered home with Bee's. where love, friendship peace and purpose thrive. I want to grow together, fulfill God's plan for our lives, while choosing each other through every season.",
+    answerB: "To build a future to helps us fulfill purpose and one where christ is king",
   },
   {
     question: "How did you know they were the one?",
-    answerA: "[Abisoye: share the moment you knew]",
-    answerB: "[Favour: share the moment you knew]",
+    answerA:
+      'It was clear, pure, and obvious. ❤️\n\nWhen Favour said, "I was taking my time because I am learning to love you as my woman, as Christ taught us, loving you as my own body," something struck me. I immediately flipped through my book and searched the notes on my phone. There it was, the very word God had given me months earlier. In that moment, I knew.',
+    answerB:
+      "I knew she was the kind of woman I wanted. First, she was what I call my G-S3: God-fearing, Sacrificial, Submissive, and Single at heart. Those were the boxes… wasn’t much, I guess. 😅",
   },
   {
     question: "What is your favorite memory together?",
-    answerA: "[Abisoye: share a favorite memory]",
-    answerB: "[Favour: share a favorite memory]",
+    answerA:
+      "My favourite memory has to be when he told me he wanted us to go somewhere, only for us to end up at a FINE DINING RESTAURANT! 😭😂\n\nGuys, I felt crazy brazy! Because tell me why my first fine-dining date had me wearing FLAT SLIP-ONS?! 😭😂 I was embarrassed and blushing inside, but at the same time, it was so sweet.\n\nBut this man? Bro still took me out, treated me like a QUEEN all through, and made me feel so special! 🥹\n\nThe shoes may not have understood the assignment, but the man definitely did! 😭❤️",
+    answerB:
+      "it was when i asked her out...lol, funny how i could almost know she'd give me a Yes, not because of anything i just knew i had some peace anytime i prayed about us, and also i think i ticked a bit of her box😉.....i'm not proud. it's what it is. 😇",
   },
 ];
 
@@ -163,245 +172,74 @@ export const registryCategories: RegistryCategory[] = [
     theme: "light",
     groups: [
       {
-        title: "Bedroom essentials",
+        title: "Bedroom & comfort",
         image: "/registry/bedroom.jpg",
         description:
-          "Everything we need to make our bedroom a soft place to land — fresh linens, warm light, and proper rest after long days.",
+          "A soft place to land — fresh linens, warm light, and proper rest after long days.",
         price: "₦120,000 – ₦250,000",
         items: [
-          "Bedsheets and duvet sets",
-          "Pillows and pillowcases",
-          "Mattress topper",
+          "Quality bedsheet and duvet set",
+          "Decorative throw pillows",
           "Bedside lamps",
-          "Curtains and blinds",
-        ],
-      },
-      {
-        title: "Living room",
-        image: "/registry/living-room.jpg",
-        description:
-          "The room where we'll host friends, unwind after work, and build the first memories of our home together.",
-        price: "₦100,000 – ₦300,000",
-        items: [
-          "Throw pillows and blankets",
-          "Area rug",
-          "Wall art and decorative frames",
-          "Floor lamp",
-          "Curtains",
-          "Wall clock",
         ],
       },
       {
         title: "Home appliances",
         image: "/registry/home-appliances.jpg",
         description:
-          "The big practical pieces that keep a Nigerian household running comfortably through every season.",
+          "The practical pieces that keep a household running comfortably through every season.",
         price: "₦250,000 – ₦800,000",
-        items: [
-          "Rechargeable standing fan",
-          "Air conditioner",
-          "Washing machine",
-          "Pressing iron or garment steamer",
-          "Vacuum cleaner",
-          "Generator or inverter contribution",
-        ],
+        items: ["Blender", "Air fryer", "Rechargeable standing fan", "Washing machine"],
       },
       {
-        title: "Home finishing touches",
-        image: "/registry/finishing.jpg",
+        title: "Dining & hosting",
+        image: "/registry/dining-serving.jpg",
         description:
-          "The small finishing details that turn four walls into a home that feels warm and lived-in.",
-        price: "₦80,000 – ₦200,000",
-        items: [
-          "Dining set",
-          "Laundry basket",
-          "Storage organisers",
-          "Bathroom accessories",
-          "Doormats",
-          "Cleaning supplies",
-        ],
+          "Tableware for quiet dinners at home and the guests we love hosting.",
+        price: "₦60,000 – ₦150,000",
+        items: ["Dinnerware and cutlery set"],
       },
     ],
   },
   {
     id: "experiences",
-    label: "Experiences",
+    label: "Honeymoon contribution",
     theme: "dark",
-    intro:
-      "This category is lovely because not every gift has to be a physical item. Your friends and family can contribute to experiences that help you build beautiful memories together.",
-    footnote:
-      "Other ideas: a spa day for two, a weekend staycation, a cooking class, or a contribution towards a trip you have both dreamed of taking.",
     groups: [
       {
-        title: "Honeymoon fund",
+        title: "Honeymoon contribution",
         image: "/registry/honeymoon.jpg",
         description:
-          "Help us create beautiful memories on our first trip as a married couple. Any contribution, small or large, brings us closer to the getaway we've been dreaming of.",
+          "A little help towards creating beautiful memories on our first trip as a married couple.",
         price: "Any amount",
-        fundDesc:
-          "Help us create beautiful memories on our first trip as a married couple.",
       },
       {
-        title: "Date night fund",
+        title: "Date night experiences",
         image: "/registry/date-night.jpg",
         description:
-          "For dinner dates, movie nights and intentional time together — so the romance never stops after the wedding.",
+          "For intentional time together, special dinners, and beautiful memories.",
         price: "Any amount",
-        fundDesc:
-          "For dinner dates, movie nights and intentional time together.",
       },
       {
-        title: "Couples' spiritual growth",
+        title: "Growing together in faith",
         image: "/registry/spiritual.jpg",
         description:
-          "Resources that help us keep Christ at the centre of our marriage as we grow together in faith.",
+          "Marriage devotionals, enrichment programmes, and resources to strengthen our walk with God.",
         price: "₦30,000 – ₦150,000",
-        items: [
-          "Couples' devotional books",
-          "Marriage enrichment programmes",
-          "Christian marriage conferences",
-          "Christian counselling sessions",
-        ],
-      },
-      {
-        title: "Memories fund",
-        image: "/registry/memories.jpg",
-        description:
-          "Toward the moments we'll look back on for decades — portraits, getaways, and anniversary celebrations.",
-        price: "₦50,000 – ₦200,000",
-        items: [
-          "Anniversary photoshoot",
-          "Couples' portrait",
-          "Short getaway",
-          "First wedding anniversary celebration",
-        ],
       },
     ],
   },
   {
-    id: "cash-gifts",
-    label: "Cash Gifts",
+    id: "gift-of-choice",
+    label: "Gift of Choice",
     theme: "light",
-    intro:
-      "Cash gifts are particularly useful for couples setting up a home because you can direct the money towards the things you need most.",
-    footnote:
-      "You can also choose a contribution amount — for example ₦10,000, ₦25,000, ₦50,000, ₦100,000, or enter a custom amount. Every contribution is appreciated, regardless of size.",
     groups: [
       {
-        title: "Our Home Fund",
-        image: "/registry/home-fund.jpg",
-        description:
-          "For furniture, rent-related expenses or setting up our home — the foundation of our first years together.",
-        price: "Any amount",
-        fundDesc:
-          "For furniture, rent-related expenses or setting up our home.",
-      },
-      {
-        title: "Honeymoon Fund",
-        image: "/registry/honeymoon-fund.jpg",
-        description:
-          "Help us fund our first adventure together as husband and wife.",
-        price: "Any amount",
-        fundDesc: "Help us fund our first adventure together.",
-      },
-      {
-        title: "Our Future Fund",
+        title: "A monetary gift",
         image: "/registry/future-fund.jpg",
         description:
-          "A contribution towards our shared future and long-term goals as a family.",
+          "For those who prefer to give cash, your gift will be thoughtfully directed towards our shared plans and the things we value as a couple.",
         price: "Any amount",
-        fundDesc:
-          "A contribution towards our shared future and long-term goals.",
-      },
-      {
-        title: "Bless Our Marriage",
-        image: "/registry/bless-marriage.jpg",
-        description:
-          "A monetary gift to support us as we begin this new chapter — every blessing matters.",
-        price: "Any amount",
-        fundDesc:
-          "A monetary gift to support us as we begin this new chapter.",
-      },
-      {
-        title: "Power & Comfort Fund",
-        image: "/registry/power-fund.jpg",
-        description:
-          "Towards an inverter, solar setup or other home essentials that keep the lights on and the home comfortable.",
-        price: "Any amount",
-        fundDesc:
-          "Towards an inverter, solar setup or other home essentials.",
-      },
-    ],
-  },
-  {
-    id: "kitchen",
-    label: "Kitchen",
-    theme: "dark",
-    intro:
-      "For a Nigerian household, this category can be one of the most useful parts of your registry.",
-    groups: [
-      {
-        title: "Cooking essentials",
-        image: "/registry/cookware.jpg",
-        description:
-          "Quality cookware for the everyday meals and Sunday rice that will define our kitchen.",
-        price: "₦100,000 – ₦250,000",
-        items: [
-          "Quality pots and pans",
-          "Pressure cooker",
-          "Non-stick frying pan",
-          "Cooking utensils",
-          "Chopping boards and knives",
-          "Mixing bowls and measuring cups",
-        ],
-      },
-      {
-        title: "Kitchen appliances",
-        image: "/registry/kitchen-appliances.jpg",
-        description:
-          "The time-saving appliances that make meal prep easier on busy weekday evenings.",
-        price: "₦150,000 – ₦500,000",
-        items: [
-          "Blender",
-          "Air fryer",
-          "Microwave",
-          "Toaster",
-          "Electric kettle",
-          "Rice cooker",
-          "Food processor",
-          "Stand mixer",
-        ],
-      },
-      {
-        title: "Dining & serving",
-        image: "/registry/dining-serving.jpg",
-        description:
-          "Tableware for quiet dinners at home and the many guests we love hosting.",
-        price: "₦60,000 – ₦150,000",
-        items: [
-          "Dinner plates and bowls",
-          "Cutlery set",
-          "Drinking glasses and mugs",
-          "Serving trays and bowls",
-          "Food flasks",
-          "Water dispenser",
-          "Food storage containers",
-        ],
-      },
-      {
-        title: "Everyday Nigerian kitchen needs",
-        image: "/registry/kitchen-everyday.jpg",
-        description:
-          "The practical staples every Nigerian home needs — from storage for rice and beans to a reliable gas setup.",
-        price: "₦80,000 – ₦200,000",
-        items: [
-          "Airtight containers for rice, beans and garri",
-          "Spice jars and seasoning organisers",
-          "Large food storage bowls",
-          "Gas cooker or contribution towards one",
-          "Gas cylinder and accessories",
-          "Pantry restocking fund",
-        ],
       },
     ],
   },

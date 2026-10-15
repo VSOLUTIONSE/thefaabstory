@@ -144,18 +144,28 @@ export function QASection() {
         {qaItems.map((item) => (
           <article
             key={item.question}
-            className="w-[380px] max-w-[85vw] shrink-0 snap-start border border-silver-border bg-surface-dim p-8 transition-colors duration-200 hover:border-silver-line"
+            className="flex w-[380px] max-w-[85vw] shrink-0 snap-start flex-col border border-silver-border bg-surface-dim p-8 transition-colors duration-200 hover:border-silver-line"
           >
             <h3 className="mb-4 font-display text-[18px] leading-[22px] text-silver">
               {item.question}
             </h3>
-            <p className="mb-6 text-[14px] leading-[1.7] text-silver-soft">
+            <p
+              title={item.answerA}
+              className="mb-6 line-clamp-4 whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft"
+            >
               {item.answerA}
             </p>
-            <div className="mb-6 h-px w-full bg-silver-hair" aria-hidden="true" />
-            <p className="text-[14px] leading-[1.7] text-silver-soft">
-              {item.answerB}
-            </p>
+            {item.answerB && (
+              <>
+                <div className="mb-6 h-px w-full bg-silver-hair" aria-hidden="true" />
+                <p
+                  title={item.answerB}
+                  className="line-clamp-4 whitespace-pre-line text-[14px] leading-[1.7] text-silver-soft"
+                >
+                  {item.answerB}
+                </p>
+              </>
+            )}
           </article>
         ))}
       </div>

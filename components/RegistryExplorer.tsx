@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { registryCategories, type RegistryCategory } from "@/lib/data";
 
 function Chip({
@@ -25,6 +25,163 @@ function Chip({
     >
       {label}
     </button>
+  );
+}
+
+const GIFT_DETAILS = [
+  { label: "Account Name", value: "Gabriel Christiana Abisoye" },
+  { label: "Account Number", value: "2286093563" },
+  { label: "Bank", value: "Zenith Bank" },
+];
+
+function CopyIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function GiftModal({ onClose }: { onClose: () => void }) {
+  const [copied, setCopied] = useState<string | null>(null);
+
+  useEffect(() => {
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [onClose]);
+
+  const copy = async (label: string, value: string) => {
+    try {
+      await navigator.clipboard.writeText(value);
+    } catch {
+      const textarea = document.createElement("textarea");
+      textarea.value = value;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      textarea.remove();
+    }
+    setCopied(label);
+    window.setTimeout(() => {
+      setCopied((current) => (current === label ? null : current));
+    }, 1500);
+  };
+
+  return (
+    <div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Gift Us — account details"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4"
+    >
+      <button
+        type="button"
+        aria-label="Close dialog"
+        onClick={onClose}
+        className="absolute inset-0 h-full w-full cursor-default bg-ink/60"
+      />
+
+      <div className="relative z-10 flex max-h-[85vh] w-full max-w-[440px] flex-col overflow-y-auto bg-white">
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close"
+          className="absolute top-3 right-3 z-10 flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-surface/90 text-ink transition-colors duration-150 hover:bg-surface"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-4.5 w-4.5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div className="flex flex-col gap-5 p-6">
+          <div>
+            <div className="t-eyebrow mb-3 text-primary">Gift Us</div>
+            <h3 className="font-display text-[22px] leading-7 text-ink">
+              Send your gift
+            </h3>
+            <p className="mt-2 text-[14px] leading-6 text-muted">
+              Bank transfer details — tap the copy icon to copy any field.
+            </p>
+          </div>
+
+          <div className="flex flex-col border-t border-silver-line">
+            {GIFT_DETAILS.map((row) => {
+              const isCopied = copied === row.label;
+              return (
+                <div
+                  key={row.label}
+                  className="flex items-center justify-between gap-4 border-b border-silver-line py-3.5"
+                >
+                  <div className="flex min-w-0 flex-col gap-1">
+                    <span className="text-[10px] leading-3 tracking-[2px] text-muted uppercase">
+                      {row.label}
+                    </span>
+                    <span className="truncate font-display text-[16px] leading-5 text-ink">
+                      {row.value}
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => copy(row.label, row.value)}
+                    aria-label={`Copy ${row.label}`}
+                    title="Copy"
+                    className={`flex h-9 w-9 shrink-0 cursor-pointer items-center justify-center rounded-full border transition-colors duration-150 ${
+                      isCopied
+                        ? "border-primary bg-primary text-on-primary"
+                        : "border-silver-line text-primary hover:border-primary"
+                    }`}
+                  >
+                    {isCopied ? <CheckIcon /> : <CopyIcon />}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+
+          <a
+            href="https://paystack.shop/pay/thefaabstory"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn btn-solid w-full justify-center"
+          >
+            Pay Online
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -170,22 +327,17 @@ function CategoryBand({
 /**
  * Category chips + accordion: items render only for the clicked category
  * (Home & Living first and open by default; clicking the active chip collapses).
- * Each card shows description, items, price, and a Gift Us button directly —
- * no modal. "Gift Us" opens the Cash Gifts category below.
+ * Each card shows description, items, price, and a Gift Us button directly.
+ * "Gift Us" opens a popup with bank account details (copy per field) and a
+ * Pay Online link.
  */
 export function RegistryExplorer() {
   const [openId, setOpenId] = useState<string | null>(
     registryCategories[0].id
   );
+  const [giftOpen, setGiftOpen] = useState(false);
 
-  const handleGift = () => {
-    setOpenId("cash-gifts");
-    window.setTimeout(() => {
-      document
-        .getElementById("cash-gifts")
-        ?.scrollIntoView({ behavior: "smooth" });
-    }, 150);
-  };
+  const handleGift = () => setGiftOpen(true);
 
   const toggle = (id: string) => {
     setOpenId((current) => (current === id ? null : id));
@@ -231,6 +383,7 @@ export function RegistryExplorer() {
           />
         ))
       )}
+      {giftOpen && <GiftModal onClose={() => setGiftOpen(false)} />}
     </>
   );
 }
