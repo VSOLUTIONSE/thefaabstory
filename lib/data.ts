@@ -173,7 +173,7 @@ export const registryCategories: RegistryCategory[] = [
     groups: [
       {
         title: "Bedroom & comfort",
-        image: "/registry/modern-bedroom.jpg",
+        image: "/registry/jumia-bedsheet.jpg",
         description:
           "A soft place to land — fresh linens, warm light, and proper rest after long days.",
         price: "₦120,000 – ₦250,000",
@@ -185,7 +185,7 @@ export const registryCategories: RegistryCategory[] = [
       },
       {
         title: "Home appliances",
-        image: "/registry/home-appliances.jpg",
+        image: "/registry/jumia-airfryer.jpg",
         description:
           "The practical pieces that keep a household running comfortably through every season.",
         price: "₦250,000 – ₦800,000",
@@ -193,7 +193,7 @@ export const registryCategories: RegistryCategory[] = [
       },
       {
         title: "Dining & hosting",
-        image: "/registry/dining-serving.jpg",
+        image: "/registry/jumia-dinnerware.jpg",
         description:
           "Tableware for quiet dinners at home and the guests we love hosting.",
         price: "₦60,000 – ₦150,000",
@@ -215,14 +215,14 @@ export const registryCategories: RegistryCategory[] = [
       },
       {
         title: "Date night experiences",
-        image: "/registry/date-night.jpg",
+        image: "/registry/date-night-romantic.jpg",
         description:
           "For intentional time together, special dinners, and beautiful memories.",
         price: "Any amount",
       },
       {
         title: "Growing together in faith",
-        image: "/registry/spiritual.jpg",
+        image: "/registry/faith-bible.jpg",
         description:
           "Marriage devotionals, enrichment programmes, and resources to strengthen our walk with God.",
         price: "₦30,000 – ₦150,000",
@@ -236,7 +236,7 @@ export const registryCategories: RegistryCategory[] = [
     groups: [
       {
         title: "A monetary gift",
-        image: "/registry/money-gift.jpg",
+        image: "/registry/gift-envelope.jpg",
         description:
           "For those who prefer to give cash, your gift will be thoughtfully directed towards our shared plans and the things we value as a couple.",
         price: "Any amount",
